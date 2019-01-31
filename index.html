@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i|Roboto+Slab:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
+    <section class="nav-nav">
+        <nav class='nav-bar'>
+            <ul class="nav-list">
+                <li class="logo">Template</li>
+                <li class="search-bar">Search</li>
+                <li class="cart"><i class="fas fa-shopping-cart"></i><p class="item-count">0</p></li>
+                <li><i class="fas fa-bars"></i></li>
+            </ul>
+        </nav>
+    </section>
+    
+    <div id='order_payment_box'>
+        <section id="order-cart">
+            <h1 class="order-header">Order details</h1>
+            <div class="line grey-line"></div>
+            
+            
+            
+
+            <ul>
+                <div class="produxt-name-box">
+                    <li class="product">Product</li>
+                    <p class="product-name">iPhone 8</p>
+                </div>
+                <div class="color-box">
+                    <li class="color">Color</li>
+                    <select name="color">
+                        <option value="silver">Silver<i class="fas fa-angle-down"></i></option>
+                        <option value="black">Black</option>
+                    </select>
+                </div>
+                <div class="capacity-box">
+                    <li class="capacity">Capacity</li>
+                    <select name="capacity">
+                        <option value="256">256 GB</option>
+                    </select>
+                    
+                </div>
+                <div class="quantity-box">
+                    <li class="quantity">Quantity</li>
+                    <select name="quantity">
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="price-box">
+                    <li class="price">Price</li>
+                </div>
+                
+            </ul>
+            <div class="line grey-line"></div>
+            
+            
+
+            <ul>
+                <div class="produxt-name-box">
+                    <li class="product">Product</li>
+                    <p class="product-name">iPhone 8</p>
+                </div>
+                <div class="color-box">
+                    <li class="color">Color</li>
+                    <select name="color">
+                        <option value="silver">Silver<i class="fas fa-angle-down"></i></option>
+                        <option value="black">Black</option>
+                    </select>
+                </div>
+                <div class="capacity-box">
+                    <li class="capacity">Capacity</li>
+                    <select name="capacity">
+                        <option value="256">256 GB</option>
+                    </select>
+                    
+                </div>
+                <div class="quantity-box">
+                    <li class="quantity">Quantity</li>
+                    <select name="quantity">
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="price-box">
+                    <li class="price">Price</li>
+                </div>
+                
+            </ul>
+            <div class="line grey-line"></div>
+            
+            
+            
+            
+        </section>
+        <form>
+            <section id="payment-info">
+                <h1 class="payment-header">Payment</h1>
+                <div class="line grey-line"></div>
+                <h4>Payment method:</h4>
+                <div id="payment-method-div">
+                    <button id="paypal-button"><i class="fab fa-paypal"></i>PayPal</button>
+                    <button id="other-payment-button"><i class="far fa-credit-card"></i>Other</button>
+                </div>
+                <h4>Name:</h4>
+                <input type="text" name="firstname" >
+                <h4>Surname:</h4>
+                <input type="text" name="surname" >
+                <h4>Email address:</h4>
+                <input type="email" name="email" placeholder="email@example.com" required>
+                <div class="address_div">
+                    <div class="addres_long">
+                        <h4>Street:</h4>
+                        <input type="text" name="street" >
+                    </div>
+                    <div>
+                        <h4>House number:</h4>
+                        <input type="text" name="house-number" >
+                    </div>
+                </div>
+                <div class="address_div">
+                    <div  class="addres_long">
+                        <h4>City:</h4>
+                        <input type="text" name="city" >
+                    </div>
+                    <div>
+                        <h4>Postcode:</h4>
+                        <input type="text" name="postcode" >
+                    </div>
+                </div>
+                <button type="submit" value="Submit" id="sumbit-form-btn">Submit</button>
+            </section>
+            
+        </form>
+    </div>
+</body>
