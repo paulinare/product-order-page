@@ -1,7 +1,3 @@
-
-
-
-
 html {
     background-color: #ebeff2;
 }
@@ -10,7 +6,8 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-color: white;
     font-weight: 400;
-    font-size: 16rem;
+    width: 100vw;
+    /*font-size: 16rem;*/
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -36,14 +33,15 @@ body {
 .line {
     height: 0.1rem;;
     background-color: #dde4ea;
-    width: 100%;
+    margin: auto;
     margin-bottom: 2rem;
     margin-top: 3rem;
 }
 
 
 .nav-list{
-    margin: auto;
+    margin: 0px;
+    width: 100%;
     margin-top: 7vw;
     margin-bottom: 6vw;
     list-style-type: none;
@@ -65,7 +63,6 @@ li {
     width: 25%;
     font-weight: 700;
     font-size: 4rem;
-    margin-left: -1.5rem;
 }
 
 .search-bar {
@@ -209,10 +206,10 @@ padding-right: 1.5rem;
 }
 
 #payment-method-div button {
-    font-size: 2.3rem;
+    font-size: 2rem;
     background-color: Transparent;
     color: white;
-    border: solid 2px white;
+    border: solid 1px white;
     margin: 1rem; 
     padding: 2rem;
     border-radius: 4rem;
@@ -264,20 +261,21 @@ input {
     width: 100%;
     padding-top: 0.7rem;
     padding-bottom: 0.5rem;
+    box-shadow: none;
 }
 
 
 #sumbit-form-btn {
     position: relative;
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
     background-color: #428ae8;
     border: none;
     padding: 1.8rem 3rem 2rem 3rem;
-    margin: 5rem 3rem 4rem 3rem;
+    margin: 7rem 3rem 4rem 3rem;
     border-radius: 5rem;
-    width: 50%;
-    left: 20%;
+    width: 70%;
+    left: 10%;
     text-align: center;
 }
 
@@ -303,22 +301,13 @@ input {
 
 @media screen and (min-width: 760px){ /* LANDSCAPE*/
     
-    html {
-        font-size: 10px;
-    }
-    
+
     body {
         min-width: 667px;
     }
     
-     #order_payment_box {
-        display: flex;
-        flex-direction: row;
-    }
-    
-    #order-cart {
-        width: 90%;
-    }
+
+   
     
     
     
@@ -329,67 +318,110 @@ input {
         justify-content: space-between;
         
     }
-    #order-cart ul div {
-        width: 20%;
-    }
+
     
     .product {
 
     position: relative;
     right: 0rem;
-}
-.product-name{
-    position: relative;
-    right: 0rem;
-    bottom: 1rem;
-}
-    
-    
-    
-    
-    
+    }
+    .product-name{
+        position: relative;
+        right: 0rem;
+        bottom: 1rem;
+    }
     
 
     
 }
 
 
+@media (min-width: 1127px) {
+    
+    body {
+        max-width: 1400px;
+    }
+    #order_payment_box {
+        display: flex;
+        flex-direction: row;
+    }
+    
+     #order-cart {
+        width: 70%;
+    }
+    
+    .line {
+        width: 95%;
 
-@media screen and (min-width: 900px) {
-    html{
-        font-size: 8px;
+    }
+}
+
+
+
+@media (min-width: 858px) {
+    html {
+        font-size: 12px;
     }
     
     body {
-        width: 80%;
+        width: 80vw;
         margin: auto;
         
     }
     
-   
+    
 }
-/*
-@media screen and (min-width: 667px) {
-    #order_payment_box {
-        flex-direction: row;
-        justify-content: space-between;
+
+@media (min-width: 780px) {
+    html {
+        font-size: 11px;
+    }
+    
+    body {
+        width: 90vw;
+        margin: auto;
     }
     
     
-    #order-cart {
-        position: relative;
-
-        width: 80%
+    
 }
 
-    #order_payment_box {
-        width: 90%;
+
+@media (min-width: 724px) {
+    html {
+        font-size: 9px;
     }
     
+    body {
+        width: 90vw;
+        margin: auto;
+    }
+    #payment-info {
+        max-width: 60vw;
+        margin: auto;
+    }
     
 }
 
+
+/*@media (min-width: 702px) {
+    html {
+        font-size: 10px;
+    }
+    
+    body {
+        width: 90vw;
+        margin: auto;
+    }
+    
+}
 */
+
+@media (max-width: 724px) {
+    html {
+        font-size: 8px;
+    }
+}
 
 
 
