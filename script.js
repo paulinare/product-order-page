@@ -41,7 +41,41 @@ var order_data = [
 						"priceModifier": 40.00
 					}
 				]
+			},
+            
+            
+            {
+				"id": 102,
+				"name": "Quantity",
+				"values": [
+					{
+						"id": 1200,
+						"name": "1",
+						"priceModifier": 1
+					},
+					{
+						"id": 1201,
+						"name": "2",
+						"priceModifier": 2
+					},
+                    {
+						"id": 1202,
+						"name": "3",
+						"priceModifier": 3
+					},
+                    {
+						"id": 1203,
+						"name": "4",
+						"priceModifier": 4
+					},
+                    {
+						"id": 1204,
+						"name": "5",
+						"priceModifier": 5
+					},
+				]
 			}
+            
 		]
 	},
 	{
@@ -91,16 +125,140 @@ var order_data = [
 						"priceModifier": 40.00
 					}
 				]
+			},
+            {
+				"id": 102,
+				"name": "Quantity",
+				"values": [
+					{
+						"id": 1200,
+						"name": "1",
+						"priceModifier": 1
+					},
+					{
+						"id": 1201,
+						"name": "2",
+						"priceModifier": 2
+					},
+                    {
+						"id": 1202,
+						"name": "3",
+						"priceModifier": 3
+					},
+                    {
+						"id": 1203,
+						"name": "4",
+						"priceModifier": 4
+					},
+                    {
+						"id": 1204,
+						"name": "5",
+						"priceModifier": 5
+					}
+				]
 			}
 		]
 	}
 ];
 
+var payment_form = {
+    payment_type: "other",
+    
+    
+
+/*
+Data form id list:
+
+    first_name_input
+    surname_input
+    email_input
+    street_input
+    house_number_input
+    city_input
+    postcode_input
+*/
+    
+    // write show_success();
+    
+    
+    highlight_required_fields: function () {
+       var form_inputs = ["first_name_input", "surname_input", "email_input", 
+                               "street_input", "house_number_input", "city_input", 
+                               "postcode_input"];
+        for (var i = 0; i < form_inputs.length; i++){
+                if (!document.getElementById(form_inputs[i]).checkValidity()) {
+                   document.getElementById(form_inputs[i]).style.borderColor = "#d47b1c";
+                }
+            else 
+                document.getElementById(form_inputs[i]).style.borderColor = "white";
+    
+            }
+        
+    },
+    
+    pass_user_data: function () {
+        console.log("user data function");
+    },
+    
+    check_form_validity: function () {
+        var isValid = false;
+        
+        if(this.payment_type=="paypal"){
+            isValid = document.getElementById("email_input").checkValidity();
+            console.log(isValid);
+        }
+        else if (this.payment_type=="other") {
+            isValid = true;
+            var form_inputs = ["first_name_input", "surname_input", "email_input", 
+                               "street_input", "house_number_input", "city_input", 
+                               "postcode_input"];
+            for (var i = 0; i < form_inputs.length; i++){
+                if (!document.getElementById(form_inputs[i]).checkValidity()) 
+                    isValid = false;
+            }
+        }
+        else {
+            console.log("Error");
+        }
+        
+        
+        if (isValid) {
+            this.pass_user_data(); // TO WRITE
+            document.getElementById('required_fields_alert').style.visibility="hidden";
+            this.highlight_required_fields();
+        }
+        else {
+            console.log(":(");
+            document.getElementById('required_fields_alert').style.visibility="visible";
+            this.highlight_required_fields();
+        }
+    },
+    
+    
+    change_payment_type: function() {
+        if (this.payment_type == "other") 
+            this.payment_type = "paypal";
+        else if (this.payment_type == "paypal")
+            this.payment_type = "other";
+        
+        this.change_fields_requirements(this.payment_type);
+    },
+    
+    change_fields_requirements: function (payment_type) {
+        var isRequired = false;
+        if (payment_type=="other")
+            isRequired = true;
+        var required_fields = document.getElementsByClassName("input_text");
+        var i=0;
+        for (i=0; i<required_fields.length;i++){
+            required_fields[i].required = isRequired;
+        }
+    }
+};
 
 
-
-function showProduct() {
-    for(let prod of order_data) { // showing products order details
+function showProduct() {    
+    for(let prod of order_data) {                   // showing order detail section 
         product_details.set_product(prod);
         product_details.one_order_create();
     }
@@ -112,8 +270,10 @@ function showProduct() {
         parent.appendChild(total_price);
         product_details.count_total_price();
     
-    order_summary.init_one_product(); // calling function to set initial product paramaeter
+    order_summary.init_one_product();              // calling function to set initial product parameter
+    //document.getElementById('sumbit-form-btn').addEventListener('click', function(){order_summary.dispatch_order();});
 
+    
     
     
 }
@@ -121,7 +281,7 @@ function showProduct() {
 var order_summary = {
     user: {},
     order: [],
-    init_one_product: function() { // setting initial product paramaters
+    init_one_product: function() {                // setting initial product paramaters
         for (let prod of order_data){ 
             var one_order = {};
             if (prod.name=="iPhone 8") {
@@ -149,16 +309,16 @@ var order_summary = {
         }
     },
     
-    change_amount: function (product_index, basic_price, color_mod, capacity_mod, quantity_mod) {
+    change_amount: function (product_index, basic_price, color_mod, capacity_mod, quantity_mod) { // setting new price on change
         var amount = order_summary.order[product_index].amount;
         amount = (basic_price+color_mod+capacity_mod)*quantity_mod;
+        amount= parseFloat(amount.toFixed(2));
         order_summary.order[product_index].amount = amount;
     },
-
     
     change_color: function () {                 // changing color - user choice
         var color = this.options[this.selectedIndex].value;
-        switch (color) {                        // setting color id value
+        switch (color) {                        // setting chosen color id value
             case "Silver":
                 color = 1000; 
                 break;
@@ -172,16 +332,16 @@ var order_summary = {
                 color = 1003;
                 break;
             default:
+                color = 1000; 
                 break;
         }
-        
-        var product_index = this.getAttribute('class')-1; // setting product index and assigning color id to product
-        order_summary.order[product_index].options[0].value = color;
+        var product_index = this.getAttribute('class')-1; 
+        order_summary.order[product_index].options[0].value = color; //assigning color id to product
     },
     
-    change_capacity: function () {
+    change_capacity: function () {              // changing capacity - user choice
         var capacity = this.options[this.selectedIndex].value;
-        switch (capacity) {
+        switch (capacity) {                     // setting chosen capacity id value
             case "64 GB":
                 capacity = 1100;
                 break;
@@ -189,15 +349,47 @@ var order_summary = {
                 capacity = 1101;
                 break;
             default: 
+                capacity = 1100;
                 break;
         }
-        
         var product_index = this.getAttribute('class')-1;
-        order_summary.order[product_index].options[1].value = capacity;
-        console.log(order_summary.order[product_index]);
+        order_summary.order[product_index].options[1].value = capacity; // assigning capacity id to product
+    },
+    
+    
+    change_quantity: function () {
+        var quantity = this.options[this.selectedIndex].value;
+        switch (quantity) {
+            case "1":
+                quantity = 1200;
+                break;
+            case "2": 
+                quantity = 1201;
+                break;
+            case "3": 
+                quantity = 1202;
+                break;
+            case "4": 
+                quantity = 1203;
+                break;
+            case "5": 
+                quantity = 1204;
+                break;
+            default:  
+                quatity = 1200;
+                break;
+        }
+        var product_index = this.getAttribute('class')-1;
+        order_summary.order[product_index].options[2].value = quantity;
+   },
+    
+    dispatch_order: function() {                                // collects data and creating JSON to log
+        var order_pack = {};
+        order_pack.user = this.user;
+        order_pack.order = this.order;
+        order_pack = JSON.stringify(order_pack);              
+        console.log(order_pack);
     }
-    
-    
 };
 
 
@@ -289,8 +481,12 @@ var product_details = {
         select_quantity.classList.add(this.product.id);
         select_quantity.setAttribute('id', this.product.id+'_quantity_select')
         select_quantity.addEventListener("change", this.set_price);
+        select_quantity.addEventListener("change", order_summary.change_quantity);
+        
+        
         quantity_div.appendChild(select_quantity);
-        this.create_quantity_selection_option(select_quantity);
+        this.create_selection_options(select_quantity, 2);
+        
         //price div
         var price_div = document.createElement('div');
         price_div.classList.add('price-box');
@@ -324,16 +520,6 @@ var product_details = {
         }
     },
     
-    create_quantity_selection_option: function (select_quantity) {
-        for (i=1; i<11; i++) {
-            var option_select = document.createElement('option');
-            option_select.value = i;
-            option_select.innerHTML = i;
-            select_quantity.appendChild(option_select);
-            option_select.setAttribute("data-pricemodifier", i);
-        }
-    },
-    
     set_price: function() {
         var id_val = this.getAttribute("class");
         var color_element = document.getElementById(id_val+"_color_select");
@@ -355,15 +541,14 @@ var product_details = {
         
         product_details.count_total_price();
         
-        order_summary.change_amount(id_val-1, basic_price, color_price_mod, capacity_price_mod, quantity_price_mod);
-
-        
-        
-        
+        order_summary.change_amount(id_val-1, basic_price, color_price_mod, capacity_price_mod, quantity_price_mod);   
     },
     
     
     count_total_price: function () {
+        
+        
+        
         var subtotal = 0;
         for (i=1; i<=order_data.length; i++) {
             var part_price = document.getElementById(i+'_price').innerHTML;
@@ -371,7 +556,6 @@ var product_details = {
             subtotal += part_price;
         }
         subtotal = subtotal.toFixed(2);
-        
         document.getElementById("total_price").innerHTML = "Total price: <span>$ "+subtotal+"</span>";
     }
 
