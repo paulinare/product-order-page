@@ -1,7 +1,3 @@
-
-
-
-
 html {
     background-color: #ebeff2;
 }
@@ -206,7 +202,24 @@ padding-right: 1.5rem;
 
 
 
+#total_price {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    color: #909090;
+    width: 30%;
+    font-weight: 600;
+    float: right;
+    padding: 1rem;
+}
 
+#total_price span {
+    color: black;
+    font-weight: 400;
+    font-size: 2rem;
+    margin-left: 2rem;
+    display: inline-block;
+    
+}
 
 
 
