@@ -119,6 +119,8 @@ padding-right: 1.5rem;
 }
 
 
+
+
 #order-cart {
     font-weight: 400;
 }
@@ -222,7 +224,6 @@ padding-right: 1.5rem;
 }
 
 
-
 #payment-info {
     
     font-family: 'Open Sans', sans-serif;
@@ -238,21 +239,64 @@ padding-right: 1.5rem;
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
+
+    width: 80%;
+    margin: auto;
+    margin-top: 2rem;
 }
 #payment-method-div i {
-    margin-right: 0.4rem;
+    margin-top: 1.5rem;
+    margin-right: 1.4rem;
+/*    margin-left: -30%;*/
 }
 
-#payment-method-div button {
-    font-size: 2rem;
-    background-color: Transparent;
-    color: white;
-    border: solid 1px white;
-    margin: 1rem; 
-    padding: 2rem;
-    border-radius: 4rem;
+#other-payment{
     width: 50%;
 }
+#paypal-payment{
+    width: 50%;
+}
+
+input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: white;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d47b1c;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+/*
+    #payment-method-div button {
+        font-size: 2rem;
+        background-color: Transparent;
+        color: white;
+        border: solid 1px white;
+        margin: 1rem; 
+        padding: 2rem;
+        border-radius: 4rem;
+        width: 50%;
+    }
+*/
 
 
 .address_div {
@@ -315,6 +359,13 @@ input {
     width: 70%;
     left: 10%;
     text-align: center;
+}
+
+#required_fields_alert {
+    color:#d47b1c;
+    float: right;
+    margin-top: -1rem;
+    visibility: hidden;
 }
 
 
