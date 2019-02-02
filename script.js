@@ -100,7 +100,7 @@ var order_data = [
 
 
 function showProduct() {
-    for(let prod of order_data) {
+    for(let prod of order_data) { // showing products order details
         product_details.set_product(prod);
         product_details.one_order_create();
     }
@@ -112,17 +112,100 @@ function showProduct() {
         parent.appendChild(total_price);
         product_details.count_total_price();
     
-    //document.getElementById('sumbit-form-btn').addEventListener('click', function(){product_details.set_summary()});
+    order_summary.init_one_product(); // calling function to set initial product paramaeter
+
     
     
 }
+
+var order_summary = {
+    user: {},
+    order: [],
+    init_one_product: function() { // setting initial product paramaters
+        for (let prod of order_data){ 
+            var one_order = {};
+            if (prod.name=="iPhone 8") {
+                one_order.id = 1;
+            }
+            else if (prod.name == "iPhone 8 Plus") {
+                one_order.id = 2;
+            }
+            one_order.options = [
+                {
+                    id: 100,                     //color
+                    value: 1000                  //value: silver gray
+                },
+                {
+                    id: 101,                     //capacity
+                    value: 1100                  //value: 64 GB
+                },
+                {
+                    id: 102,                     //quantity
+                    value: 1                     //value
+                }
+            ];
+            one_order.amount = prod.price; 
+            this.order.push(one_order);
+        }
+    },
+    
+    change_amount: function (product_index, basic_price, color_mod, capacity_mod, quantity_mod) {
+        var amount = order_summary.order[product_index].amount;
+        amount = (basic_price+color_mod+capacity_mod)*quantity_mod;
+        order_summary.order[product_index].amount = amount;
+    },
+
+    
+    change_color: function () {                 // changing color - user choice
+        var color = this.options[this.selectedIndex].value;
+        switch (color) {                        // setting color id value
+            case "Silver":
+                color = 1000; 
+                break;
+            case "Space Gray":
+                color = 1001;
+                break;
+            case "Gold": 
+                color = 1002;
+                break;
+            case "Red":
+                color = 1003;
+                break;
+            default:
+                break;
+        }
+        
+        var product_index = this.getAttribute('class')-1; // setting product index and assigning color id to product
+        order_summary.order[product_index].options[0].value = color;
+    },
+    
+    change_capacity: function () {
+        var capacity = this.options[this.selectedIndex].value;
+        switch (capacity) {
+            case "64 GB":
+                capacity = 1100;
+                break;
+            case "256 GB":
+                capacity = 1101;
+                break;
+            default: 
+                break;
+        }
+        
+        var product_index = this.getAttribute('class')-1;
+        order_summary.order[product_index].options[1].value = capacity;
+        console.log(order_summary.order[product_index]);
+    }
+    
+    
+};
+
 
 
 var product_details = {
     
     product: {},
     
-    order_summary : {},
     
     set_product: function(prod) {
         this.product = prod;
@@ -166,7 +249,8 @@ var product_details = {
         select_color.name = "color";
         select_color.classList.add(this.product.id);
         select_color.setAttribute('id',this.product.id+"_color_select");
-        select_color.addEventListener("change", this.set_price);        
+        select_color.addEventListener("change", this.set_price);    
+        select_color.addEventListener("change", order_summary.change_color);
         
         color_div.appendChild(select_color);
         this.create_selection_options(select_color, 0);
@@ -186,6 +270,8 @@ var product_details = {
         select_capacity.classList.add(this.product.id);
         select_capacity.setAttribute('id', this.product.id+'_capacity_select')
         select_capacity.addEventListener("change", this.set_price);
+        select_capacity.addEventListener("change", order_summary.change_capacity);
+        
         capacity_div.appendChild(select_capacity);
         this.create_selection_options(select_capacity, 1);
         
@@ -268,6 +354,12 @@ var product_details = {
         document.getElementById(id_val+"_price").innerHTML = "$ "+price;
         
         product_details.count_total_price();
+        
+        order_summary.change_amount(id_val-1, basic_price, color_price_mod, capacity_price_mod, quantity_price_mod);
+
+        
+        
+        
     },
     
     
