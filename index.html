@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="products.json"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i|Roboto+Slab:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -30,44 +31,48 @@
             </ul>
             <div class="line grey-line"></div>
         </section>
-        <form>
+        
             <section id="payment-info">
                 <h1 class="payment-header">Payment</h1>
                 <div class="line grey-line"></div>
                 <h4>Payment method:</h4>
                 <div id="payment-method-div">
-                    <button id="paypal-button"><i class="fab fa-paypal"></i>PayPal</button>
-                    <button id="other-payment-button"><i class="far fa-credit-card"></i>Other</button>
+                    <div><input type="radio" name="payment" value="paypal" id="paypal-payment" onchange="payment_form.change_payment_type()"><br><i class="fab fa-paypal"></i>PayPal</div>
+                    <div><input type="radio" name="payment" value="other" id="other-payment" checked="checked" onchange="payment_form.change_payment_type()"><br><i class="far fa-credit-card"></i>Other</div>
+                    
                 </div>
                 <h4>Name:</h4>
-                <input type="text" name="firstname" >
+                <input id="first_name_input" class="input_text" type="text" name="firstname" required>
                 <h4>Surname:</h4>
-                <input type="text" name="surname" >
+                <input id="surname_input" class="input_text" type="text" name="surname" required>
                 <h4>Email address:</h4>
-                <input type="email" name="email" placeholder="email@example.com" required>
+                <input id="email_input" type="email" name="email" placeholder="email@example.com" required>
                 <div class="address_div">
                     <div class="addres_long">
                         <h4>Street:</h4>
-                        <input type="text" name="street" >
+                        <input id="street_input" class="input_text" type="text" name="street" required>
                     </div>
                     <div>
                         <h4>House number:</h4>
-                        <input type="text" name="house-number" >
+                        <input id="house_number_input" class="input_text" type="text" name="house-number" required>
                     </div>
                 </div>
                 <div class="address_div">
                     <div  class="addres_long">
                         <h4>City:</h4>
-                        <input type="text" name="city" >
+                        <input id="city_input" class="input_text" type="text" name="city" required>
                     </div>
                     <div>
                         <h4>Postcode:</h4>
-                        <input type="text" name="postcode" >
+                        <input id="postcode_input" class="input_text" type="text" name="postcode" required>
                     </div>
+                    
+                    
                 </div>
-                <button type="submit" value="Submit" id="sumbit-form-btn">Submit</button>
+                <button type="submit" value="Submit" id="sumbit-form-btn" onclick="payment_form.check_form_validity()">Submit</button>
+                <p id="required_fields_alert">Please fill required fields!</p>
             </section>
             
-        </form>
+       
     </div>
 </body>
