@@ -39,7 +39,7 @@
                 <div id="payment-method-div">
                     <div><input type="radio" name="payment" value="paypal" id="paypal-payment" onchange="payment_form.change_payment_type()"><br><i class="fab fa-paypal"></i>PayPal</div>
                     <div><input type="radio" name="payment" value="other" id="other-payment" checked="checked" onchange="payment_form.change_payment_type()"><br><i class="far fa-credit-card"></i>Other</div>
-                    
+                
                 </div>
                 <h4>Name:</h4>
                 <input id="first_name_input" class="input_text" type="text" name="firstname" required>
@@ -71,6 +71,7 @@
                 </div>
                 <button type="submit" value="Submit" id="sumbit-form-btn" onclick="payment_form.check_form_validity()">Submit</button>
                 <p id="required_fields_alert">Please fill required fields!</p>
+                <p id="success_alert">Success!</p>
             </section>
             
        
