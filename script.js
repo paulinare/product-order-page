@@ -2,7 +2,9 @@ var order_data = [];
 $.getJSON( "https://paulinare.github.io/product-order-page/products.json", function( json ) {
     for (var i = 0; i<json.length; i++) {
      order_data.push(json[i]);
+     
     }
+    init();
 });
 
 function init() {    
@@ -374,5 +376,5 @@ var order_summary = {
 };
 
 window.onload = function () {
-    init();
+
 };
