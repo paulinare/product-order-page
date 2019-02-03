@@ -163,24 +163,7 @@ var order_data = [
 
 var payment_form = {
     payment_type: "other",
-    
-    
 
-/*
-Data form id list:
-
-    first_name_input
-    surname_input
-    email_input
-    street_input
-    house_number_input
-    city_input
-    postcode_input
-*/
-    
-    // write show_success();
-    
-    
     highlight_required_fields: function () {
        var form_inputs = ["first_name_input", "surname_input", "email_input", 
                                "street_input", "house_number_input", "city_input", 
@@ -191,21 +174,14 @@ Data form id list:
                 }
             else 
                 document.getElementById(form_inputs[i]).style.borderColor = "white";
-    
             }
-        
     },
-    
-    pass_user_data: function () {
-        console.log("user data function");
-    },
-    
+   
     check_form_validity: function () {
         var isValid = false;
         
         if(this.payment_type=="paypal"){
             isValid = document.getElementById("email_input").checkValidity();
-            console.log(isValid);
         }
         else if (this.payment_type=="other") {
             isValid = true;
@@ -223,18 +199,17 @@ Data form id list:
         
         
         if (isValid) {
-            this.pass_user_data(); // TO WRITE
+            order_summary.set_user_data(); // TO WRITE
+            order_summary.dispatch_order();
             document.getElementById('required_fields_alert').style.visibility="hidden";
             this.highlight_required_fields();
         }
         else {
-            console.log(":(");
             document.getElementById('required_fields_alert').style.visibility="visible";
             this.highlight_required_fields();
         }
     },
-    
-    
+
     change_payment_type: function() {
         if (this.payment_type == "other") 
             this.payment_type = "paypal";
@@ -262,7 +237,6 @@ function showProduct() {
         product_details.set_product(prod);
         product_details.one_order_create();
     }
-    //total price
         var total_price = document.createElement('p');
         total_price.innerHTML = "Total price: ";
         total_price.setAttribute('id', 'total_price');
@@ -270,12 +244,7 @@ function showProduct() {
         parent.appendChild(total_price);
         product_details.count_total_price();
     
-    order_summary.init_one_product();              // calling function to set initial product parameter
-    //document.getElementById('sumbit-form-btn').addEventListener('click', function(){order_summary.dispatch_order();});
-
-    
-    
-    
+    order_summary.init_one_product();              // calling function to set initial product parameter  
 }
 
 var order_summary = {
@@ -383,12 +352,60 @@ var order_summary = {
         order_summary.order[product_index].options[2].value = quantity;
    },
     
+    
+    set_user_data: function () {
+        var user_data = {
+            name: '',
+            surname: '',
+            email: '',
+            address: {
+                    street: '',
+                    houseNumber: '',
+                    city: '',
+                    postcode: ''
+            }
+        }
+        
+        var temp_value = "";
+        
+        temp_value = document.getElementById("first_name_input").value;
+        user_data.name = temp_value;
+        
+        temp_value = document.getElementById("surname_input").value;
+        user_data.surname = temp_value;
+        
+        temp_value = document.getElementById("email_input").value;
+        user_data.email = temp_value;
+        
+        temp_value = document.getElementById("street_input").value;
+        user_data.address.street = temp_value;
+        
+        temp_value = document.getElementById("house_number_input").value;
+        user_data.address.houseNumber = temp_value;
+        
+        temp_value = document.getElementById("city_input").value;
+        user_data.address.city = temp_value;
+        
+        temp_value = document.getElementById("postcode_input").value;
+        user_data.address.postcode = temp_value;
+
+        this.user = user_data;
+    },
+    
+    show_success: function () {
+        document.getElementById('sumbit-form-btn').disabled = true;
+        document.getElementById('success_alert').style.visibility="visible";
+    },
+    
     dispatch_order: function() {                                // collects data and creating JSON to log
         var order_pack = {};
         order_pack.user = this.user;
         order_pack.order = this.order;
         order_pack = JSON.stringify(order_pack);              
         console.log(order_pack);
+        this.show_success(); 
+
+
     }
 };
 
@@ -503,11 +520,9 @@ var product_details = {
         product_price.setAttribute("id",this.product.id+"_price");
         price_div.appendChild(product_price);
         this.set_price;
-        
-        
+
         parent.appendChild(line);
-        
-        
+ 
     },
     
     create_selection_options: function (select_parameter, i) { // i => parameter index from json
@@ -543,12 +558,8 @@ var product_details = {
         
         order_summary.change_amount(id_val-1, basic_price, color_price_mod, capacity_price_mod, quantity_price_mod);   
     },
-    
-    
+   
     count_total_price: function () {
-        
-        
-        
         var subtotal = 0;
         for (i=1; i<=order_data.length; i++) {
             var part_price = document.getElementById(i+'_price').innerHTML;
@@ -558,7 +569,6 @@ var product_details = {
         subtotal = subtotal.toFixed(2);
         document.getElementById("total_price").innerHTML = "Total price: <span>$ "+subtotal+"</span>";
     }
-
 }
 
 
