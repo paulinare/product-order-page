@@ -7,7 +7,6 @@ body {
     background-color: white;
     font-weight: 400;
     width: 100vw;
-    /*font-size: 16rem;*/
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -81,8 +80,6 @@ padding-right: 1.5rem;
     width: 1rem;
 }
 
-
-
 #order_payment_box {
     position: relative;
     display: flex;
@@ -91,8 +88,6 @@ padding-right: 1.5rem;
     justify-content: space-between;
 }
 
-
-
 #order_payment_box  {
     margin: auto;
     font-family: 'Roboto Slab', serif;
@@ -100,9 +95,6 @@ padding-right: 1.5rem;
     text-align: left;
     font-size: 2rem;
 }
-
-
-
 
 #order-cart {
     font-weight: 400;
@@ -118,7 +110,6 @@ padding-right: 1.5rem;
     position:relative;
     top: 2rem;
 }
-
 
 #order-cart ul {
     list-style-type: none;
@@ -141,7 +132,6 @@ padding-right: 1.5rem;
     color: #909090;
 }
 
-
 .product-name {
     font-family: 'Open Sans', sans-serif;
 }
@@ -154,14 +144,7 @@ padding-right: 1.5rem;
     padding: 0.4rem;
     background-color: transparent;
     width: 70%;
-
 }
-
-
-
-
-
-
 
 .product {
     position: relative;
@@ -173,17 +156,12 @@ padding-right: 1.5rem;
     bottom: 1rem;
 }
 
-
-
-
 .product_price {
     font-family: 'Open Sans', sans-serif;
     position: relative;
     bottom: 1rem;
     font-size: 2rem;
 }
-
-
 
 #total_price {
     font-family: 'Open Sans', sans-serif;
@@ -200,27 +178,28 @@ padding-right: 1.5rem;
     font-weight: 400;
     font-size: 2rem;
     margin-left: 2rem;
-    display: inline-block;
-    
+    display: inline-block;  
 }
-
 
 #payment-info {
     
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     color: #e1e1e1;
-    background-image: linear-gradient(to bottom left,  #354051, #181e2a);
+    background-color: #262f3f;
     border-radius: 2rem;
     padding: 3.5rem;
 }
 
+
+#payment-info h1 {
+    font-size: 4rem;
+}
 #payment-method-div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
-
     width: 80%;
     margin: auto;
     margin-top: 2rem;
@@ -228,12 +207,12 @@ padding-right: 1.5rem;
 #payment-method-div i {
     margin-top: 1.5rem;
     margin-right: 1.4rem;
-/*    margin-left: -30%;*/
 }
 
 #other-payment{
     width: 50%;
 }
+
 #paypal-payment{
     width: 50%;
 }
@@ -252,19 +231,19 @@ input[type='radio']:after {
         border: 2px solid white;
     }
 
-    input[type='radio']:checked:after {
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        top: -2px;
-        left: -1px;
-        position: relative;
-        background-color: #d47b1c;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 2px solid white;
-    }
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d47b1c;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
 
 .address_div {
     display: flex;
@@ -299,7 +278,17 @@ input[type='radio']:after {
 }
 
 
-input {
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #262f3f inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+input{ 
     font-size: 2.5rem;
     font-weight: 100;
     background-color: transparent;
@@ -312,7 +301,6 @@ input {
     padding-bottom: 0.5rem;
     box-shadow: none;
 }
-
 
 #sumbit-form-btn {
     position: relative;
@@ -336,7 +324,6 @@ input {
     visibility: hidden;
 }
 
-
 #sumbit-form-btn:disabled {
     opacity: 0.5;
 }
@@ -344,7 +331,6 @@ input {
 #success_alert {
     top: -3.8rem;
 }
-
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #c3c3c3;
@@ -363,15 +349,12 @@ input {
     font-weight: 100;
 }
 
-
-
-
-
 @media (min-width: 1127px) {
     
     body {
         max-width: 1400px;
     }
+    
     #order_payment_box {
         display: flex;
         flex-direction: row;
@@ -383,12 +366,8 @@ input {
     
     .line {
         width: 95%;
-
     }
-    
 }
-
-
 
 @media (min-width: 858px) {
     html {
@@ -397,11 +376,8 @@ input {
     
     body {
         width: 80vw;
-        margin: auto;
-        
-    }
-    
-    
+        margin: auto; 
+    } 
 }
 
 @media (min-width: 780px) {
@@ -417,8 +393,8 @@ input {
     #order-cart ul {
         flex-wrap: nowrap;
         justify-content: space-between;
-        
     }
+    
     .big-screen-labels li {
         display: initial;
     }
@@ -428,19 +404,18 @@ input {
     }
         
     .product {
-
     position: relative;
     right: 0rem;
     }
+    
     .product-name{
-        position: relative;
+        position:  relative;
         right: 0rem;
         bottom: 1rem;
     }
     
 
 }
-
 
 @media (min-width: 724px) {
     html {
@@ -455,8 +430,6 @@ input {
         max-width: 60vw;
         margin: auto;
     }
-    
-    
 }
 
 
@@ -468,8 +441,6 @@ input {
     .logo {
         font-size: 3rem;
     }
-    
-    
 }
 
 
