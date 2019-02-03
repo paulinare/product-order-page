@@ -13,23 +13,8 @@ body {
     flex-direction: column;
     justify-content: center;
     z-index: 100;
-
-    
 }
 
-
-/*.circle {
-    position: fixed;
-    overflow: hidden;
-    height: 90vw;
-    width: 90vw;
-    border-radius: 50%;
-    display: inline-block;
-    background-color: #e1e5e8;
-    z-index: -1;
-    left: 50vw;
-    bottom: 30vw;
-}*/
 .line {
     height: 0.1rem;;
     background-color: #dde4ea;
@@ -37,7 +22,6 @@ body {
     margin-bottom: 2rem;
     margin-top: 3rem;
 }
-
 
 .nav-list{
     margin: 0px;
@@ -115,7 +99,6 @@ padding-right: 1.5rem;
     font-weight: 600;
     text-align: left;
     font-size: 2rem;
-    
 }
 
 
@@ -135,8 +118,6 @@ padding-right: 1.5rem;
     position:relative;
     top: 2rem;
 }
-
-
 
 
 #order-cart ul {
@@ -285,20 +266,6 @@ input[type='radio']:after {
         border: 2px solid white;
     }
 
-/*
-    #payment-method-div button {
-        font-size: 2rem;
-        background-color: Transparent;
-        color: white;
-        border: solid 1px white;
-        margin: 1rem; 
-        padding: 2rem;
-        border-radius: 4rem;
-        width: 50%;
-    }
-*/
-
-
 .address_div {
     display: flex;
     justify-content: space-between;
@@ -361,11 +328,21 @@ input {
     text-align: center;
 }
 
-#required_fields_alert {
+#required_fields_alert, #success_alert{
     color:#d47b1c;
-    float: right;
+    position: relative;
+    text-align: right;
     margin-top: -1rem;
     visibility: hidden;
+}
+
+
+#sumbit-form-btn:disabled {
+    opacity: 0.5;
+}
+
+#success_alert {
+    top: -3.8rem;
 }
 
 
